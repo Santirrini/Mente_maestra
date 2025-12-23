@@ -41,7 +41,12 @@ async def websocket_endpoint(websocket: WebSocket, bb: Annotated[Blackboard, Dep
     
     # Subscribe to redis channels
     pubsub = bb.redis.pubsub()
-    await pubsub.subscribe("synapse:contributions", "synapse:state_updates")
+    await pubsub.subscribe(
+        "synapse:contributions", 
+        "synapse:state_updates",
+        "synapse:agent:refiner:output",
+        "synapse:agent:guardian:result"
+    )
     
     try:
         while True:

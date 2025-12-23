@@ -30,7 +30,7 @@ export const useSynapseWS = (url: string) => {
           const payload = JSON.parse(event.data);
           const { channel, data } = payload;
 
-          if (channel === 'synapse:contributions') {
+          if (channel === 'synapse:contributions' || channel === 'synapse:agent:refiner:output') {
             const contribution = {
               agent_id: data.agent_id || 'UNKNOWN',
               timestamp: new Date().toISOString(),
