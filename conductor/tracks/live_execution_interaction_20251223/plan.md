@@ -6,10 +6,10 @@
 - [x] Task: Asegurar que el `Blackboard` mantenga el estado de la sesión (logs y mensajes) en Redis.
 - [x] Task: Conductor - User Manual Verification 'Fase 1: Instrumentación del Backend' (Protocol in workflow.md)
 
-## Fase 2: Feedback Visual en Tiempo Real [checkpoint: TBD]
-- [~] Task: Actualizar el componente `NodeManager` para reaccionar al `activeNodeId` (cambio de color del agente activo).
-- [ ] Task: Mejorar los estilos de resaltado en `GraphCanvas` para una transición suave entre nodos.
-- [ ] Task: Conductor - User Manual Verification 'Fase 2: Feedback Visual en Tiempo Real' (Protocol in workflow.md)
+## Fase 2: Feedback Visual en Tiempo Real [checkpoint: 959f567]
+- [x] Task: Actualizar el componente `NodeManager` para reaccionar al `activeNodeId` (cambio de color del agente activo).
+- [x] Task: Mejorar los estilos de resaltado en `GraphCanvas` para una transición suave entre nodos.
+- [x] Task: Conductor - User Manual Verification 'Fase 2: Feedback Visual en Tiempo Real' (Protocol in workflow.md)
 
 ## Fase 3: Integración del Ciclo de Chat [checkpoint: TBD]
 - [ ] Task: Conectar el input del `ChatPanel` con el endpoint de ejecución.
