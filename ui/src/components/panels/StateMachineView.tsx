@@ -21,7 +21,6 @@ const StateMachineView: React.FC = () => {
                 {phases.map((phase, index) => {
                     const isDone = index < currentIndex;
                     const isActive = index === currentIndex;
-                    const isPending = index > currentIndex;
 
                     return (
                         <div key={phase} className="relative group">
@@ -61,7 +60,5 @@ const StateMachineView: React.FC = () => {
         </div>
     );
 };
-
-export default StateMachineView;
 
 export default StateMachineView;
