@@ -1,6 +1,9 @@
 from typing import TypedDict, Annotated, Sequence, Dict, Any
 from langgraph.graph import StateGraph, END
 import operator
+from synapse.core.agents.vision_agent import VisionAgent
+from synapse.core.agents.guardian_agent import GuardianAgent
+from synapse.core.models import AgentContribution
 
 class OrchestratorState(TypedDict):
     input: str
@@ -11,6 +14,10 @@ class OrchestratorState(TypedDict):
 class SynapseOrchestrator:
     def __init__(self):
         self.workflow = StateGraph(OrchestratorState)
+        
+        # Initialize agents
+        self.vision_agent = VisionAgent(agent_id="vision_1")
+        self.guardian_agent = GuardianAgent(agent_id="guardian_1")
         
         # Define nodes
         self.workflow.add_node("analyzer", self.analyzer_node)
@@ -32,30 +39,46 @@ class SynapseOrchestrator:
         
         self.app = self.workflow.compile()
 
-    def analyzer_node(self, state: OrchestratorState) -> OrchestratorState:
-        """Simulates an analysis node."""
-        # Note: In a real scenario, this would call an LLM or a specialized agent.
+    async def analyzer_node(self, state: OrchestratorState) -> OrchestratorState:
+        """Calls the Vision Agent."""
+        print(f"--- ANALYZING (Iteration {state['iterations'] + 1}) ---")
+        
+        contribution = await self.vision_agent.analyze(state['input'])
+        
         return {
             **state,
-            "analysis": f"Analyzed: {state['input']}",
+            "analysis": contribution.content,
             "iterations": state['iterations'] + 1
         }
 
-    def guardian_node(self, state: OrchestratorState) -> OrchestratorState:
-        """Simulates a validation/guardian node."""
-        # Logic: For the sake of testing the loop, let's say it's valid 
-        # only if iterations > 0 (which is always true after the first run).
-        # We could make it complex to force a second iteration.
+    async def guardian_node(self, state: OrchestratorState) -> OrchestratorState:
+        """Calls the Guardian Agent."""
+        print("--- VALIDATING ---")
+        
+        # Create a temp contribution object from the analysis to validate
+        # In a real system, we'd fetch this from the Blackboard
+        contribution = AgentContribution(
+            agent_id="vision_1", # Mock source
+            timestamp=0.0,
+            content=state["analysis"]
+        )
+        
+        validation_result = await self.guardian_agent.validate(contribution)
+        
         return {
             **state,
-            "is_valid": state['iterations'] > 0
+            "is_valid": validation_result.is_compliant
         }
 
     def should_continue(self, state: OrchestratorState) -> str:
         """Decides whether to continue or end."""
         if state["is_valid"]:
             return "end"
-        return "continue"
+        # If not valid, we might want to loop or stop with error.
+        # For this logic, if it's invalid, we stop (reject).
+        # We only loop if we want to *correct* the output.
+        # Here, let's just end. If invalid, the state reflects it.
+        return "end"
 
     async def run(self, initial_state: OrchestratorState) -> OrchestratorState:
         """Executes the graph."""
