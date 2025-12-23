@@ -8,7 +8,7 @@
 
 ## Fase 2: Orquestador y API
 - [x] Task: Implementar servidor FastAPI básico. [ceb0014]
-- [ ] Task: Configurar motor de orquestación con LangGraph.
+- [x] Task: Configurar motor de orquestación con LangGraph. [1cd4915]
 - [ ] Task: Crear nodo de integración para Ollama.
 - [ ] Task: Conductor - User Manual Verification 'Fase 2: Orquestador y API' (Protocol in workflow.md)
 
