@@ -76,10 +76,10 @@ Synapse actúa como el "Sistema Nervioso Central" para la empresa agéntica, pro
 - **Escalabilidad Inteligente:** Gestionar el consumo de recursos (GPU/CPU) activando módulos solo cuando la tarea lo requiera.
 
 ## Características Principales (MVP)
-- **Arquitectura de Pizarra (Blackboard):** Espacio de memoria compartida donde agentes multimodales colaboran y validan información de forma asíncrona.
+- **Arquitectura de Pizarra (Blackboard):** Implementado con Redis Pub/Sub para mensajería asíncrona y almacenamiento de estado compartido.
 - **Dashboard de Observabilidad:** Interfaz visual para rastrear la lógica de decisión, el estado de los agentes y los flujos de datos.
 - **Interfaz No-Code de Conectividad:** Capacidad para que usuarios finales integren nuevos agentes o fuentes de datos sin necesidad de desarrollo.
-- **Guardianes de Seguridad:** Sistemas de inhibición de errores enfocados en el control de alucinaciones, sesgos y la ejecución segura (sandboxing) de acciones.
+- **Guardianes de Seguridad:** Agente Guardián implementado con validación lógica de contenido para asegurar el cumplimiento de políticas.
 
 ## Estrategia de Despliegue
 - **Local-first en Fedora:** Optimización profunda para el sistema operativo Fedora, permitiendo la soberanía total del dato.

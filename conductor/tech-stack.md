@@ -9,7 +9,7 @@
 - **Lenguaje Principal:** Python 3.12+ (Estándar de oro para IA y backend).
 - **Orquestador de Estados:** LangGraph (Grafos cíclicos para flujos de feedback y máquinas de estados).
 - **Validación de Datos:** Pydantic (Gobernanza de tipos y formatos para sectores regulados).
-- **API Framework:** FastAPI (Comunicación asíncrona y ultrarrápida).
+- **API Framework:** FastAPI + Uvicorn (Comunicación asíncrona y ultrarrápida).
 
 ## Memoria y Pizarra (El Hipocampo)
 - **Pizarra en Tiempo Real:** Redis (Memoria de trabajo de baja latencia para colaboración multiagente).
@@ -24,3 +24,8 @@
 ## Interfaz (Sistema Sensoriomotor)
 - **Frontend:** React + Tailwind CSS (Panel de control minimalista).
 - **Visualización:** Tremor / Recharts (Gráficos de red dinámicos y métricas de eficiencia/ROAI).
+
+## Bibliotecas y Herramientas Adicionales
+- **Testing:** pytest, pytest-asyncio, pytest-cov, httpx.
+- **Configuración:** pydantic-settings (Gestión de variables de entorno).
+- **Integración LLM:** ollama (Cliente Python oficial), langchain-core (Estructuras base).
