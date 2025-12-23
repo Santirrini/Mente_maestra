@@ -13,11 +13,11 @@
 - [x] Task: Implementar el componente `NodeManager` para control de salud de agentes.
 - [x] Task: Conductor - User Manual Verification 'Fase 2: Layout y Componentes Visuales' (Protocol in workflow.md)
 
-## Fase 3: Visualización del Grafo con ReactFlow [checkpoint: TBD]
+## Fase 3: Visualización del Grafo con ReactFlow [checkpoint: 74b1a49]
 - [x] Task: Configurar el canvas de `ReactFlow` con estilos personalizados para Synapse.
 - [x] Task: Definir nodos y bordes personalizados que representen los agentes y el flujo de LangGraph.
 - [x] Task: Implementar lógica de resaltado de nodos basada en el estado de ejecución en el store de Zustand.
-- [ ] Task: Conductor - User Manual Verification 'Fase 3: Visualización del Grafo con ReactFlow' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Fase 3: Visualización del Grafo con ReactFlow' (Protocol in workflow.md)
 
 ## Fase 4: Integración de Datos y WebSockets [checkpoint: TBD]
 - [ ] Task: Implementar cliente de WebSocket en el frontend para conectar con FastAPI.
