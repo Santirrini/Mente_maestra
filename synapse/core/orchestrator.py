@@ -3,6 +3,7 @@ from langgraph.graph import StateGraph, END
 import operator
 from synapse.core.agents.vision_agent import VisionAgent
 from synapse.core.agents.guardian_agent import GuardianAgent
+from synapse.core.blackboard import Blackboard
 from synapse.core.models import AgentContribution
 
 class OrchestratorState(TypedDict):
@@ -14,6 +15,8 @@ class OrchestratorState(TypedDict):
 class SynapseOrchestrator:
     def __init__(self):
         self.workflow = StateGraph(OrchestratorState)
+        self.blackboard = Blackboard()
+        self.max_iterations = 3
         
         # Initialize agents
         self.vision_agent = VisionAgent(agent_id="vision_1")
@@ -40,10 +43,13 @@ class SynapseOrchestrator:
         self.app = self.workflow.compile()
 
     async def analyzer_node(self, state: OrchestratorState) -> OrchestratorState:
-        """Calls the Vision Agent."""
+        """Calls the Vision Agent and publishes to blackboard."""
         print(f"--- ANALYZING (Iteration {state['iterations'] + 1}) ---")
         
         contribution = await self.vision_agent.analyze(state['input'])
+        
+        # Publish to Blackboard
+        await self.blackboard.publish("synapse:agents:vision", contribution)
         
         return {
             **state,
@@ -52,18 +58,24 @@ class SynapseOrchestrator:
         }
 
     async def guardian_node(self, state: OrchestratorState) -> OrchestratorState:
-        """Calls the Guardian Agent."""
+        """Calls the Guardian Agent and validates against security policies."""
         print("--- VALIDATING ---")
         
-        # Create a temp contribution object from the analysis to validate
-        # In a real system, we'd fetch this from the Blackboard
+        # Create a temp contribution object from the analysis
         contribution = AgentContribution(
-            agent_id="vision_1", # Mock source
+            agent_id="vision_1",
             timestamp=0.0,
             content=state["analysis"]
         )
         
         validation_result = await self.guardian_agent.validate(contribution)
+        
+        # Publish validation status to Blackboard
+        await self.blackboard.publish("synapse:agents:guardian", {
+            "is_valid": validation_result.is_compliant,
+            "logs": validation_result.logs,
+            "iteration": state["iterations"]
+        })
         
         return {
             **state,
@@ -71,14 +83,16 @@ class SynapseOrchestrator:
         }
 
     def should_continue(self, state: OrchestratorState) -> str:
-        """Decides whether to continue or end."""
+        """Decides whether to continue or end based on validity and iteration count."""
         if state["is_valid"]:
             return "end"
-        # If not valid, we might want to loop or stop with error.
-        # For this logic, if it's invalid, we stop (reject).
-        # We only loop if we want to *correct* the output.
-        # Here, let's just end. If invalid, the state reflects it.
-        return "end"
+        
+        if state["iterations"] >= self.max_iterations:
+            print(f"--- REJECTED: Max iterations ({self.max_iterations}) reached ---")
+            return "end"
+            
+        print("--- RETRYING: Validation failed ---")
+        return "continue"
 
     async def run(self, initial_state: OrchestratorState) -> OrchestratorState:
         """Executes the graph."""

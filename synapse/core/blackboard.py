@@ -2,14 +2,18 @@ import json
 import redis.asyncio as redis
 import asyncio
 import inspect
-from typing import Callable, Any, Dict, Optional
+import logging
+from typing import Callable, Any, Dict, Optional, List
+from pydantic import BaseModel
 from synapse.core.config import settings
+
+logger = logging.getLogger(__name__)
 
 class Blackboard:
     def __init__(self, redis_url: str = settings.REDIS_URL):
         self.redis = redis.from_url(redis_url, decode_responses=True)
         self.pubsub = self.redis.pubsub()
-        self.callbacks: Dict[str, Callable] = {}
+        self.callbacks: Dict[str, List[Callable]] = {}
         self._listening_task = None
         self._heartbeat_task = None
 
@@ -36,14 +40,24 @@ class Blackboard:
             })
             await asyncio.sleep(settings.HEARTBEAT_INTERVAL)
 
-    async def publish(self, channel: str, message: Dict[str, Any]):
-        """Publish a message to a channel."""
-        await self.redis.publish(channel, json.dumps(message))
+    async def publish(self, channel: str, message: Any):
+        """Publish a message to a channel. Supports Pydantic models."""
+        if isinstance(message, BaseModel):
+            payload = message.model_dump_json()
+        elif isinstance(message, dict):
+            payload = json.dumps(message)
+        else:
+            payload = str(message)
+            
+        await self.redis.publish(channel, payload)
 
     async def subscribe(self, channel: str, callback: Callable[[Dict[str, Any]], Any]):
         """Subscribe to a channel and execute callback on message."""
-        self.callbacks[channel] = callback
-        await self.pubsub.subscribe(channel)
+        if channel not in self.callbacks:
+            self.callbacks[channel] = []
+            await self.pubsub.subscribe(channel)
+        
+        self.callbacks[channel].append(callback)
         
         # Start listening loop if not already started
         if not self._listening_task:
@@ -54,12 +68,20 @@ class Blackboard:
             if message['type'] == 'message':
                 channel = message['channel']
                 if channel in self.callbacks:
-                    data = json.loads(message['data'])
-                    cb = self.callbacks[channel]
-                    if inspect.iscoroutinefunction(cb):
-                        await cb(data)
-                    else:
-                        cb(data)
+                    try:
+                        data = json.loads(message['data'])
+                        for cb in self.callbacks[channel]:
+                            try:
+                                if inspect.iscoroutinefunction(cb):
+                                    await cb(data)
+                                else:
+                                    cb(data)
+                            except Exception as e:
+                                logger.error(f"Error in Blackboard callback for channel {channel}: {e}")
+                    except json.JSONDecodeError:
+                        logger.warning(f"Received non-JSON message on channel {channel}: {message['data']}")
+                    except Exception as e:
+                        logger.error(f"Unexpected error in Blackboard listener: {e}")
 
     async def set_state(self, key: str, value: Dict[str, Any], ttl: Optional[int] = settings.DEFAULT_STATE_TTL):
         """Store state in the blackboard with an optional TTL in seconds."""

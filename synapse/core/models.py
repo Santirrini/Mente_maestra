@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import List, Dict, Any, Optional, Literal
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+import re
 
 class AgentPhase(str, Enum):
     IDLE = 'IDLE'
@@ -28,3 +29,11 @@ class MultimodalInput(BaseModel):
     source_url: str
     sampling_rate: Optional[int] = None
     resolution: Optional[Dict[str, int]] = None
+
+    @field_validator('source_url')
+    @classmethod
+    def validate_url(cls, v: str) -> str:
+        # Basic URL or local path validation
+        if not v.startswith(('http://', 'https://', 'file://', '/')):
+            raise ValueError('source_url must start with http, https, file, or /')
+        return v
