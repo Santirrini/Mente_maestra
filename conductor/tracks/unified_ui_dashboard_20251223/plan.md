@@ -6,12 +6,12 @@
 - [x] Task: Estructurar la jerarquía de componentes y definir el store de Zustand inicial.
 - [x] Task: Conductor - User Manual Verification 'Fase 1: Configuración del Entorno Frontend' (Protocol in workflow.md)
 
-## Fase 2: Layout y Componentes Visuales (Estructura A) [checkpoint: TBD]
+## Fase 2: Layout y Componentes Visuales (Estructura A) [checkpoint: bec14dd]
 - [x] Task: Implementar el Layout Unificado (Grid/Flexbox) con diseño minimalista.
 - [x] Task: Desarrollar el componente `ChatPanel` (Input y lista de mensajes).
 - [x] Task: Desarrollar el componente `LogPanel` para mostrar el flujo de la Pizarra.
 - [x] Task: Implementar el componente `NodeManager` para control de salud de agentes.
-- [ ] Task: Conductor - User Manual Verification 'Fase 2: Layout y Componentes Visuales' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Fase 2: Layout y Componentes Visuales' (Protocol in workflow.md)
 
 ## Fase 3: Visualización del Grafo con ReactFlow [checkpoint: TBD]
 - [ ] Task: Configurar el canvas de `ReactFlow` con estilos personalizados para Synapse.
