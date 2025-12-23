@@ -1,0 +1,8 @@
+{
+  "track_id": "synapse_core_mvp_20251222",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2025-12-22T12:00:00Z",
+  "updated_at": "2025-12-22T12:00:00Z",
+  "description": "Desarrollar el núcleo de orquestación: Implementar la Pizarra (Redis), el servidor principal (FastAPI) y la integración básica con LangGraph para permitir la comunicación entre un agente de visión local (Ollama) y un agente guardián de validación."
+}
