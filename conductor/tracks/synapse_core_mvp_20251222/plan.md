@@ -1,10 +1,10 @@
 # Plan: Synapse Core MVP
 
-## Fase 1: Infraestructura Base
+## Fase 1: Infraestructura Base [checkpoint: 25c77fc]
 - [x] Task: Configurar entorno de desarrollo con Podman y Redis local. [db9e80e]
 - [x] Task: Implementar cliente de Pizarra (Blackboard) sobre Redis. [02f673e]
 - [x] Task: Definir esquemas de datos base con Pydantic. [14b00e2]
-- [~] Task: Conductor - User Manual Verification 'Fase 1: Infraestructura Base' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Fase 1: Infraestructura Base' (Protocol in workflow.md) [25c77fc]
 
 ## Fase 2: Orquestador y API
 - [ ] Task: Implementar servidor FastAPI básico.
