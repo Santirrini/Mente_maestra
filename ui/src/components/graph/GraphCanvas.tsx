@@ -2,10 +2,9 @@ import React, { useMemo } from 'react';
 import ReactFlow, { 
   Background, 
   Controls, 
-  Node, 
-  Edge,
   ConnectionLineType
 } from 'reactflow';
+import type { Node, Edge } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { useSynapseStore } from '../../store/useSynapseStore';
 

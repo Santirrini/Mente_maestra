@@ -9,5 +9,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [x] Track: Implementar interfaz de usuario unificada (Dashboard)
-*Link: [./conductor/tracks/unified_ui_dashboard_20251223/](./conductor/tracks/unified_ui_dashboard_20251223/)*
+## [ ] Track: Interacción y ejecución en vivo (Chat-Graph Feedback)
+*Link: [./conductor/tracks/live_execution_interaction_20251223/](./conductor/tracks/live_execution_interaction_20251223/)*
