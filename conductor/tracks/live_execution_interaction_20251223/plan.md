@@ -1,10 +1,10 @@
 # Plan: Live Execution & Interaction
 
-## Fase 1: Instrumentación del Backend [checkpoint: TBD]
-- [~] Task: Crear endpoint `POST /api/v1/execute` en FastAPI para disparar el orquestador.
-- [ ] Task: Implementar el sistema de callbacks en `Orchestrator` para emitir cambios de estado a Redis.
-- [ ] Task: Asegurar que el `Blackboard` mantenga el estado de la sesión (logs y mensajes) en Redis.
-- [ ] Task: Conductor - User Manual Verification 'Fase 1: Instrumentación del Backend' (Protocol in workflow.md)
+## Fase 1: Instrumentación del Backend [checkpoint: 7631261]
+- [x] Task: Crear endpoint `POST /api/v1/execute` en FastAPI para disparar el orquestador.
+- [x] Task: Implementar el sistema de callbacks en `Orchestrator` para emitir cambios de estado a Redis.
+- [x] Task: Asegurar que el `Blackboard` mantenga el estado de la sesión (logs y mensajes) en Redis.
+- [x] Task: Conductor - User Manual Verification 'Fase 1: Instrumentación del Backend' (Protocol in workflow.md)
 
 ## Fase 2: Feedback Visual en Tiempo Real [checkpoint: TBD]
 - [ ] Task: Actualizar el componente `NodeManager` para reaccionar al `activeNodeId` (cambio de color del agente activo).
