@@ -1,8 +1,7 @@
 {
   "track_id": "unified_ui_dashboard_20251223",
   "type": "feature",
-  "status": "new",
-  "created_at": "2025-12-23T10:00:00Z",
-  "updated_at": "2025-12-23T10:00:00Z",
+  "status": "completed",
+  "updated_at": "2025-12-23T14:15:00Z",
   "description": "Implementar una interfaz de usuario unificada con React, Tailwind CSS, TypeScript y Zustand para el control y observabilidad de Synapse."
 }

@@ -9,5 +9,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [ ] Track: Implementar interfaz de usuario unificada (Dashboard)
+## [x] Track: Implementar interfaz de usuario unificada (Dashboard)
 *Link: [./conductor/tracks/unified_ui_dashboard_20251223/](./conductor/tracks/unified_ui_dashboard_20251223/)*
