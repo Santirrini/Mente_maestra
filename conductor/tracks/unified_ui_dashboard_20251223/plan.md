@@ -14,9 +14,9 @@
 - [x] Task: Conductor - User Manual Verification 'Fase 2: Layout y Componentes Visuales' (Protocol in workflow.md)
 
 ## Fase 3: Visualización del Grafo con ReactFlow [checkpoint: TBD]
-- [ ] Task: Configurar el canvas de `ReactFlow` con estilos personalizados para Synapse.
-- [ ] Task: Definir nodos y bordes personalizados que representen los agentes y el flujo de LangGraph.
-- [ ] Task: Implementar lógica de resaltado de nodos basada en el estado de ejecución en el store de Zustand.
+- [x] Task: Configurar el canvas de `ReactFlow` con estilos personalizados para Synapse.
+- [x] Task: Definir nodos y bordes personalizados que representen los agentes y el flujo de LangGraph.
+- [x] Task: Implementar lógica de resaltado de nodos basada en el estado de ejecución en el store de Zustand.
 - [ ] Task: Conductor - User Manual Verification 'Fase 3: Visualización del Grafo con ReactFlow' (Protocol in workflow.md)
 
 ## Fase 4: Integración de Datos y WebSockets [checkpoint: TBD]

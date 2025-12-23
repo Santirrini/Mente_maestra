@@ -3,6 +3,8 @@ import ChatPanel from './components/panels/ChatPanel';
 import LogPanel from './components/panels/LogPanel';
 import NodeManager from './components/panels/NodeManager';
 
+import GraphCanvas from './components/graph/GraphCanvas';
+
 function App() {
   return (
     <div className="flex h-screen w-full bg-slate-950 text-slate-50 overflow-hidden font-sans">
@@ -22,15 +24,8 @@ function App() {
         
         <NodeManager />
 
-        <div className="h-full w-full flex items-center justify-center">
-          <div className="text-center space-y-2">
-            <div className="text-slate-800 font-mono text-sm animate-pulse">
-              INITIALIZING_VISUALIZER...
-            </div>
-            <div className="text-[10px] text-slate-700 font-mono">
-              REACT_FLOW_PENDING_INTEGRATION
-            </div>
-          </div>
+        <div className="h-full w-full">
+          <GraphCanvas />
         </div>
       </main>
 
