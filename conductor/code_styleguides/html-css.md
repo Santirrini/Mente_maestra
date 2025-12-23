@@ -1,49 +1,65 @@
-# Google HTML/CSS Style Guide Summary
+# Guía de Diseño: Estética y Estructura (Synapse)
 
-This document summarizes key rules and best practices from the Google HTML/CSS Style Guide.
+Esta guía define los estándares visuales para la interfaz de Synapse. Buscamos una estética de "Centro de Control" que sea funcional, sofisticada y que refleje la precisión de un entorno científico-tecnológico.
 
-## 1. General Rules
-- **Protocol:** Use HTTPS for all embedded resources.
-- **Indentation:** Indent by 2 spaces. Do not use tabs.
-- **Capitalization:** Use only lowercase for all code (element names, attributes, selectors, properties).
-- **Trailing Whitespace:** Remove all trailing whitespace.
-- **Encoding:** Use UTF-8 (without a BOM). Specify `<meta charset="utf-8">` in HTML.
+## 1. El Sistema Tegumentario (Diseño Atómico)
 
-## 2. HTML Style Rules
-- **Document Type:** Use `<!doctype html>`.
-- **HTML Validity:** Use valid HTML.
-- **Semantics:** Use HTML elements according to their intended purpose (e.g., use `<p>` for paragraphs, not for spacing).
-- **Multimedia Fallback:** Provide `alt` text for images and transcripts/captions for audio/video.
-- **Separation of Concerns:** Strictly separate structure (HTML), presentation (CSS), and behavior (JavaScript). Link to CSS and JS from external files.
-- **`type` Attributes:** Omit `type` attributes for stylesheets (`<link>`) and scripts (`<script>`).
+Nuestra "piel" digital debe ser resistente pero sensible. Utilizaremos **Tailwind CSS** para garantizar que el diseño sea coherente en todos los dispositivos (responsive).
 
-## 3. HTML Formatting Rules
-- **General:** Use a new line for every block, list, or table element, and indent its children.
-- **Quotation Marks:** Use double quotation marks (`""`) for attribute values.
+- **Dark Mode por Defecto:** Para reducir la fatiga visual del clínico o investigador. Usaremos una paleta de grises profundos y azules medianoche (`slate-900`, `zinc-950`).
 
-## 4. CSS Style Rules
-- **CSS Validity:** Use valid CSS.
-- **Class Naming:** Use meaningful, generic names. Separate words with a hyphen (`-`).
-  - **Good:** `.video-player`, `.site-navigation`
-  - **Bad:** `.vid`, `.red-text`
-- **ID Selectors:** Avoid using ID selectors for styling. Prefer class selectors.
-- **Shorthand Properties:** Use shorthand properties where possible (e.g., `padding`, `font`).
-- **`0` and Units:** Omit units for `0` values (e.g., `margin: 0;`).
-- **Leading `0`s:** Always include leading `0`s for decimal values (e.g., `font-size: 0.8em;`).
-- **Hexadecimal Notation:** Use 3-character hex notation where possible (e.g., `#fff`).
-- **`!important`:** Avoid using `!important`.
+### Tokens de Diseño:
+- **Fondo Principal:** `bg-slate-950`
+- **Contenedores (Fascia):** `bg-slate-900/50` con bordes `border-slate-800`.
+- **Acentos (Sinapsis):** `blue-500` para acciones primarias, `emerald-500` para estados saludables, y `rose-500` para alertas (dolor/error).
 
-## 5. CSS Formatting Rules
-- **Declaration Order:** Alphabetize declarations within a rule.
-- **Indentation:** Indent all block content.
-- **Semicolons:** Use a semicolon after every declaration.
-- **Spacing:**
-  - Use a space after a property name's colon (`font-weight: bold;`).
-  - Use a space between the last selector and the opening brace (`.foo {`).
-  - Start a new line for each selector and declaration.
-- **Rule Separation:** Separate rules with a new line.
-- **Quotation Marks:** Use single quotes (`''`) for attribute selectors and property values (e.g., `[type='text']`).
+## 2. Glassmorphism: El Espacio Sináptico
 
-**BE CONSISTENT.** When editing code, match the existing style.
+Para dar profundidad multidimensional a la interfaz, aplicaremos efectos de "cristal" (glassmorphism). Esto permite al usuario percibir capas de información, similar a cómo percibimos la profundidad en los tejidos corporales.
 
-*Source: [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html)*
+```html
+<!-- Ejemplo de contenedor con efecto de profundidad -->
+<div class="bg-slate-900/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl">
+  <h3 class="text-slate-100 font-semibold">Estado del Agente</h3>
+  <p class="text-slate-400 text-sm">Procesando señales sensoriales...</p>
+</div>
+```
+
+## 3. Layout: Organización Somatotópica
+
+Al igual que la corteza somatosensorial tiene un mapa del cuerpo, nuestra interfaz debe tener una jerarquía clara:
+
+- **Sidebar (El Tronco Encefálico):** Control de navegación y estados vitales del sistema.
+- **Header (El Sistema Reticular):** Alertas rápidas, búsqueda y perfil de usuario.
+- **Main Area (La Corteza):** Donde ocurre el procesamiento real (la Pizarra y los Grafos de agentes).
+- **Panel de Detalles (Receptores):** Información profunda de cada agente seleccionado.
+
+## 4. Tipografía: Legibilidad Científica
+
+La información en Synapse debe ser legible bajo cualquier condición de estrés operativo.
+
+- **Fuente Principal:** San Serif (Inter o Geist). Refleja modernidad y limpieza.
+- **Fuente Monoespaciada:** Para logs de agentes y datos técnicos (JetBrains Mono o Fira Code). Muy apreciada por usuarios de Fedora.
+
+### Escala Visual:
+- `text-xs`: Para metadatos y logs (densidad de información).
+- `text-base`: Para contenido principal.
+- `text-xl/2xl`: Solo para títulos de sección o métricas críticas (ROAI).
+
+## 5. Micro-interacciones (Reflejos Visuales)
+
+La interfaz debe reaccionar a la intención del usuario.
+
+- **Hover States:** Cambios sutiles de opacidad o brillo.
+- **Transiciones:** Usa `transition-all duration-300 ease-in-out` para que el movimiento de los componentes se sienta orgánico, no mecánico.
+- **Loading States:** Esqueletos de carga (`animate-pulse`) para mantener la calma del usuario mientras los agentes "piensan".
+
+## 6. Accesibilidad (Vías Aferentes)
+
+No olvides que la multidimensionalidad incluye la diversidad funcional:
+
+- **Contraste Elevado:** Asegura que el texto sobre fondos oscuros supere el ratio de 4.5:1.
+- **Focus States:** El "foco" del teclado debe ser claramente visible (`ring-2 ring-blue-500`).
+- **Semántica HTML:** Usa `<main>`, `<nav>`, `<aside>` y `<article>`. Un HTML bien estructurado es como un esqueleto bien alineado: todo lo demás funciona mejor.
+
+> "El diseño no es lo que se ve, es cómo funciona la conexión entre el usuario y el sistema. Una interfaz limpia reduce la carga cognitiva, permitiendo que la inteligencia del usuario y la de la IA se sincronicen sin fricción."
