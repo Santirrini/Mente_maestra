@@ -7,7 +7,7 @@
 - [x] Task: Conductor - User Manual Verification 'Fase 1: Infraestructura Base' (Protocol in workflow.md) [25c77fc]
 
 ## Fase 2: Orquestador y API
-- [ ] Task: Implementar servidor FastAPI básico.
+- [x] Task: Implementar servidor FastAPI básico. [ceb0014]
 - [ ] Task: Configurar motor de orquestación con LangGraph.
 - [ ] Task: Crear nodo de integración para Ollama.
 - [ ] Task: Conductor - User Manual Verification 'Fase 2: Orquestador y API' (Protocol in workflow.md)
