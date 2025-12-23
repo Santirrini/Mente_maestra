@@ -24,7 +24,7 @@ class SynapseState(BaseModel):
     blackboard: BlackboardState
 
 class MultimodalInput(BaseModel):
-    type: Literal['IMAGE', 'VIDEO', 'AUDIO']
+    type: Literal['IMAGE', 'VIDEO', 'AUDIO', 'TEXT', 'SENSORY']
     source_url: str
     sampling_rate: Optional[int] = None
     resolution: Optional[Dict[str, int]] = None
