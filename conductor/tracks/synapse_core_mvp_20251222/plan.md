@@ -6,11 +6,11 @@
 - [x] Task: Definir esquemas de datos base con Pydantic. [14b00e2]
 - [x] Task: Conductor - User Manual Verification 'Fase 1: Infraestructura Base' (Protocol in workflow.md) [25c77fc]
 
-## Fase 2: Orquestador y API
+## Fase 2: Orquestador y API [checkpoint: d3315c0]
 - [x] Task: Implementar servidor FastAPI básico. [ceb0014]
-- [x] Task: Configurar motor de orquestación con LangGraph. [1cd4915]
-- [x] Task: Crear nodo de integración para Ollama. [db56bf3]
-- [ ] Task: Conductor - User Manual Verification 'Fase 2: Orquestador y API' (Protocol in workflow.md)
+- [x] Task: Configurar motor de orquestación con LangGraph. [9463cb9]
+- [x] Task: Crear nodo de integración para Ollama. [cf643bb]
+- [x] Task: Conductor - User Manual Verification 'Fase 2: Orquestador y API' (Protocol in workflow.md) [d3315c0]
 
 ## Fase 3: Integración Multimodal y Guardianes
 - [ ] Task: Desarrollar el Agente de Visión (Wrapper de Ollama).
