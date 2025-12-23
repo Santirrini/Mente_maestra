@@ -1,7 +1,7 @@
 # Plan: Synapse Core MVP
 
 ## Fase 1: Infraestructura Base
-- [ ] Task: Configurar entorno de desarrollo con Podman y Redis local.
+- [x] Task: Configurar entorno de desarrollo con Podman y Redis local. [db9e80e]
 - [ ] Task: Implementar cliente de Pizarra (Blackboard) sobre Redis.
 - [ ] Task: Definir esquemas de datos base con Pydantic.
 - [ ] Task: Conductor - User Manual Verification 'Fase 1: Infraestructura Base' (Protocol in workflow.md)
