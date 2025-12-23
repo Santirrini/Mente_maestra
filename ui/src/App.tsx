@@ -6,12 +6,15 @@ import GraphCanvas from './components/graph/GraphCanvas';
 import { useSynapseWS } from './hooks/useSynapseWS';
 
 function App() {
-  // Initialize WebSocket connection
-  useSynapseWS('ws://localhost:8000/ws');
+  // Use relative URL to leverage Vite proxy
+  // In production, this would need to point to the actual backend URL
+  const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const wsUrl = `${wsProtocol}//${window.location.host}/ws`;
+  
+  useSynapseWS(wsUrl);
 
   return (
     <div className="flex h-screen w-full bg-slate-950 text-slate-50 overflow-hidden font-sans">
-
       {/* Panel Izquierdo: Chat */}
       <aside className="w-80 flex-shrink-0 border-r border-slate-800">
         <ChatPanel />

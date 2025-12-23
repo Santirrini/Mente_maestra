@@ -45,25 +45,36 @@ async def websocket_endpoint(websocket: WebSocket, bb: Annotated[Blackboard, Dep
     
     try:
         while True:
-            # Check for messages from redis
-            message = await pubsub.get_message(ignore_subscribe_messages=True, timeout=1.0)
-            if message:
-                data = json.loads(message["data"])
-                # Forward to websocket client
-                await websocket.send_json({
-                    "channel": message["channel"].decode("utf-8"),
-                    "data": data
-                })
+            try:
+                # Check for messages from redis
+                message = await pubsub.get_message(ignore_subscribe_messages=True, timeout=1.0)
+                if message:
+                    data = json.loads(message["data"])
+                    # Forward to websocket client
+                    await websocket.send_json({
+                        "channel": message["channel"].decode("utf-8"),
+                        "data": data
+                    })
+            except (asyncio.TimeoutError, RuntimeError):
+                # Basic heartbeat check or handle intermittent redis issues
+                pass
             
             # Non-blocking sleep to allow other tasks
             await asyncio.sleep(0.01)
             
     except WebSocketDisconnect:
-        await pubsub.unsubscribe()
+        print("WebSocket client disconnected")
+        try:
+            await pubsub.unsubscribe()
+        except:
+            pass
     except Exception as e:
-        print(f"WebSocket error: {e}")
+        print(f"WebSocket encounter error: {e}")
     finally:
-        await pubsub.close()
+        try:
+            await pubsub.close()
+        except:
+            pass
 
 @app.get("/health")
 async def health():

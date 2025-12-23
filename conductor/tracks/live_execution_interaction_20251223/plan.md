@@ -12,7 +12,7 @@
 - [x] Task: Conductor - User Manual Verification 'Fase 2: Feedback Visual en Tiempo Real' (Protocol in workflow.md)
 
 ## Fase 3: Integración del Ciclo de Chat [checkpoint: TBD]
-- [ ] Task: Conectar el input del `ChatPanel` con el endpoint de ejecución.
-- [ ] Task: Implementar la carga inicial de mensajes y logs desde el backend al abrir la UI.
-- [ ] Task: Mostrar la respuesta final del orquestador en la burbuja de chat del asistente.
-- [ ] Task: Conductor - User Manual Verification 'Fase 3: Integración del Ciclo de Chat' (Protocol in workflow.md)
+- [x] Task: Conectar el input del `ChatPanel` con el endpoint de ejecución.
+- [x] Task: Implementar la carga inicial de mensajes y logs desde el backend al abrir la UI.
+- [x] Task: Mostrar la respuesta final del orquestador en la burbuja de chat del asistente.
+- [x] Task: Conductor - User Manual Verification 'Fase 3: Integración del Ciclo de Chat' (Protocol in workflow.md)
