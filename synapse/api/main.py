@@ -1,8 +1,10 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, WebSocket, WebSocketDisconnect
 from synapse.core.blackboard import Blackboard
 from synapse.core.models import SynapseState, AgentContribution, AgentPhase, BlackboardState
 from synapse.core.config import settings
 from typing import Annotated
+import asyncio
+import json
 
 # Dependency to get blackboard
 async def get_blackboard():
@@ -13,6 +15,36 @@ async def get_blackboard():
         await bb.close()
 
 app = FastAPI(title="Synapse Control Plane API")
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket, bb: Annotated[Blackboard, Depends(get_blackboard)]):
+    await websocket.accept()
+    
+    # Subscribe to redis channels
+    pubsub = bb.redis.pubsub()
+    await pubsub.subscribe("synapse:contributions", "synapse:state_updates")
+    
+    try:
+        while True:
+            # Check for messages from redis
+            message = await pubsub.get_message(ignore_subscribe_messages=True, timeout=1.0)
+            if message:
+                data = json.loads(message["data"])
+                # Forward to websocket client
+                await websocket.send_json({
+                    "channel": message["channel"].decode("utf-8"),
+                    "data": data
+                })
+            
+            # Non-blocking sleep to allow other tasks
+            await asyncio.sleep(0.01)
+            
+    except WebSocketDisconnect:
+        await pubsub.unsubscribe()
+    except Exception as e:
+        print(f"WebSocket error: {e}")
+    finally:
+        await pubsub.close()
 
 @app.get("/health")
 async def health():

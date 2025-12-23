@@ -20,8 +20,8 @@
 - [x] Task: Conductor - User Manual Verification 'Fase 3: Visualización del Grafo con ReactFlow' (Protocol in workflow.md)
 
 ## Fase 4: Integración de Datos y WebSockets [checkpoint: TBD]
-- [ ] Task: Implementar cliente de WebSocket en el frontend para conectar con FastAPI.
-- [ ] Task: Vincular el flujo de mensajes del chat con el endpoint del orquestador.
-- [ ] Task: Sincronizar el estado del grafo y los logs de la pizarra con los eventos de WebSocket vía Zustand.
-- [ ] Task: Implementar toggles de control para habilitar/deshabilitar agentes desde la UI.
+- [x] Task: Implementar cliente de WebSocket en el frontend para conectar con FastAPI.
+- [x] Task: Vincular el flujo de mensajes del chat con el endpoint del orquestador.
+- [x] Task: Sincronizar el estado del grafo y los logs de la pizarra con los eventos de WebSocket vía Zustand.
+- [x] Task: Implementar toggles de control para habilitar/deshabilitar agentes desde la UI.
 - [ ] Task: Conductor - User Manual Verification 'Fase 4: Integración de Datos y WebSockets' (Protocol in workflow.md)

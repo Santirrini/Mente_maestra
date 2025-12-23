@@ -2,12 +2,16 @@ import React from 'react';
 import ChatPanel from './components/panels/ChatPanel';
 import LogPanel from './components/panels/LogPanel';
 import NodeManager from './components/panels/NodeManager';
-
 import GraphCanvas from './components/graph/GraphCanvas';
+import { useSynapseWS } from './hooks/useSynapseWS';
 
 function App() {
+  // Initialize WebSocket connection
+  useSynapseWS('ws://localhost:8000/ws');
+
   return (
     <div className="flex h-screen w-full bg-slate-950 text-slate-50 overflow-hidden font-sans">
+
       {/* Panel Izquierdo: Chat */}
       <aside className="w-80 flex-shrink-0 border-r border-slate-800">
         <ChatPanel />
