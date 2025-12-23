@@ -7,7 +7,7 @@
 - [x] Task: Conductor - User Manual Verification 'Fase 1: Instrumentación del Backend' (Protocol in workflow.md)
 
 ## Fase 2: Feedback Visual en Tiempo Real [checkpoint: TBD]
-- [ ] Task: Actualizar el componente `NodeManager` para reaccionar al `activeNodeId` (cambio de color del agente activo).
+- [~] Task: Actualizar el componente `NodeManager` para reaccionar al `activeNodeId` (cambio de color del agente activo).
 - [ ] Task: Mejorar los estilos de resaltado en `GraphCanvas` para una transición suave entre nodos.
 - [ ] Task: Conductor - User Manual Verification 'Fase 2: Feedback Visual en Tiempo Real' (Protocol in workflow.md)
 

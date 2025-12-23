@@ -1,11 +1,29 @@
 import React from 'react';
 import { Shield, Eye, Cpu } from 'lucide-react';
+import { useSynapseStore } from '../../store/useSynapseStore';
 
 const NodeManager: React.FC = () => {
+  const activeNodeId = useSynapseStore((state) => state.activeNodeId);
+
   const agents = [
-    { name: 'Vision', status: 'online', icon: <Eye size={14} /> },
-    { name: 'Guardian', status: 'online', icon: <Shield size={14} /> },
-    { name: 'Ollama', status: 'offline', icon: <Cpu size={14} /> },
+    { 
+      name: 'Vision', 
+      node: 'analyzer',
+      icon: <Eye size={14} />,
+      status: activeNodeId === 'analyzer' ? 'active' : 'online'
+    },
+    { 
+      name: 'Guardian', 
+      node: 'guardian',
+      icon: <Shield size={14} />,
+      status: activeNodeId === 'guardian' ? 'active' : 'online'
+    },
+    { 
+      name: 'Ollama', 
+      node: 'none',
+      icon: <Cpu size={14} />,
+      status: 'offline' 
+    },
   ];
 
   return (
@@ -18,12 +36,26 @@ const NodeManager: React.FC = () => {
           {agents.map((agent) => (
             <div key={agent.name} className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-xs">
-                <span className="text-slate-400">{agent.icon}</span>
-                <span className="text-slate-300">{agent.name}</span>
+                <span className={`${agent.status === 'active' ? 'text-blue-400' : 'text-slate-400'} transition-colors`}>
+                  {agent.icon}
+                </span>
+                <span className={`${agent.status === 'active' ? 'text-blue-200 font-bold' : 'text-slate-300'} transition-colors`}>
+                  {agent.name}
+                </span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className={`w-1.5 h-1.5 rounded-full ${agent.status === 'online' ? 'bg-green-500' : 'bg-red-500'}`}></span>
-                <span className="text-[9px] text-slate-500 uppercase font-mono">{agent.status}</span>
+                <span className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                  agent.status === 'active' 
+                    ? 'bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)] scale-125' 
+                    : agent.status === 'online' 
+                      ? 'bg-green-500' 
+                      : 'bg-red-500'
+                }`}></span>
+                <span className={`text-[9px] uppercase font-mono transition-colors ${
+                  agent.status === 'active' ? 'text-blue-400 font-bold' : 'text-slate-500'
+                }`}>
+                  {agent.status}
+                </span>
               </div>
             </div>
           ))}
