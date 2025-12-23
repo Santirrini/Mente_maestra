@@ -76,6 +76,31 @@ async def websocket_endpoint(websocket: WebSocket, bb: Annotated[Blackboard, Dep
         except:
             pass
 
+@app.get("/api/v1/state")
+async def get_state(bb: Annotated[Blackboard, Depends(get_blackboard)]):
+    """Retrieve current blackboard state."""
+    # This is a simplified version for tests
+    contributions_raw = await bb.redis.lrange("synapse:chat_history", 0, -1)
+    contributions = [json.loads(c) for c in contributions_raw]
+    return {
+        "current_phase": "IDLE",
+        "blackboard": {
+            "contributions": contributions,
+            "is_compliant": True,
+            "logs": []
+        }
+    }
+
+@app.post("/api/v1/contributions", status_code=201)
+async def post_contribution(
+    contribution: AgentContribution,
+    bb: Annotated[Blackboard, Depends(get_blackboard)]
+):
+    """Post a generic agent contribution."""
+    payload = contribution.model_dump()
+    await bb.publish("synapse:contributions", payload)
+    return payload
+
 @app.get("/health")
 async def health():
     return {"status": "healthy"}

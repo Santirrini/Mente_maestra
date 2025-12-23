@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSynapseStore } from '../../store/useSynapseStore';
-import { CheckCircle2, Circle, PlayCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, Circle, Loader2, Activity } from 'lucide-react';
 
 const phases = ['IDLE', 'ANALYZING', 'VALIDATING', 'EXECUTING'];
 
@@ -9,7 +9,7 @@ const StateMachineView: React.FC = () => {
     const currentIndex = phases.indexOf(currentPhase);
 
     return (
-        <div className="p-4 h-full flex flex-col">
+        <div data-testid="state-machine-view" className="p-4 h-full flex flex-col">
             <div className="flex items-center gap-2 mb-6">
                 <Activity className="w-5 h-5 text-rose-400" />
                 <h2 className="text-sm font-bold tracking-widest uppercase text-slate-400">
@@ -27,8 +27,8 @@ const StateMachineView: React.FC = () => {
                         <div key={phase} className="relative group">
                             {/* Indicator */}
                             <div className={`absolute -left-[41px] top-1 p-1 rounded-full bg-slate-950 border-2 ${isDone ? 'border-emerald-500 text-emerald-500' :
-                                    isActive ? 'border-cyan-500 text-cyan-500 glow-cyan' :
-                                        'border-slate-800 text-slate-700'
+                                isActive ? 'border-cyan-500 text-cyan-500 glow-cyan' :
+                                    'border-slate-800 text-slate-700'
                                 }`}>
                                 {isDone ? <CheckCircle2 className="w-4 h-4" /> :
                                     isActive ? <Loader2 className="w-4 h-4 animate-spin" /> :
@@ -37,8 +37,8 @@ const StateMachineView: React.FC = () => {
 
                             <div>
                                 <h3 className={`text-xs font-bold uppercase tracking-widest ${isDone ? 'text-slate-400' :
-                                        isActive ? 'text-cyan-400' :
-                                            'text-slate-600'
+                                    isActive ? 'text-cyan-400' :
+                                        'text-slate-600'
                                     }`}>
                                     {phase}
                                 </h3>
@@ -62,8 +62,6 @@ const StateMachineView: React.FC = () => {
     );
 };
 
-// Temporal icons import workaround if not passed correctly
-import { Activity as ActivityIcon } from 'lucide-react';
-const Activity = ActivityIcon;
+export default StateMachineView;
 
 export default StateMachineView;

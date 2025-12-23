@@ -15,7 +15,7 @@ const GovernanceModule: React.FC = () => {
     };
 
     return (
-        <div className="p-4 space-y-4">
+        <div data-testid="governance-module" className="p-4 space-y-4">
             <div className="flex items-center gap-2 mb-4">
                 <ShieldCheck className="w-5 h-5 text-emerald-400" />
                 <h2 className="text-sm font-bold tracking-widest uppercase text-slate-400">

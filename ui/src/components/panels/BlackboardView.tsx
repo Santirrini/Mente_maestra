@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSynapseStore } from '../../store/useSynapseStore';
-import { Brain, MessageSquare, Clock } from 'lucide-react';
+import { Brain, Clock } from 'lucide-react';
 
 const BlackboardView: React.FC = () => {
     const contributions = useSynapseStore((state) => state.contributions);
 
     return (
-        <div className="flex flex-col h-full gap-4 p-4 overflow-y-auto">
+        <div data-testid="blackboard-view" className="flex flex-col h-full gap-4 p-4 overflow-y-auto">
             <div className="flex items-center gap-2 mb-2">
                 <Brain className="w-5 h-5 text-cyan-400" />
                 <h2 className="text-sm font-bold tracking-widest uppercase text-slate-400">
