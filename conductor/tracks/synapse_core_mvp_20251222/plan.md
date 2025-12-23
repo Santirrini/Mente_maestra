@@ -12,8 +12,8 @@
 - [x] Task: Crear nodo de integración para Ollama. [cf643bb]
 - [x] Task: Conductor - User Manual Verification 'Fase 2: Orquestador y API' (Protocol in workflow.md) [d3315c0]
 
-## Fase 3: Integración Multimodal y Guardianes
+## Fase 3: Integración Multimodal y Guardianes [checkpoint: e7d33df]
 - [x] Task: Desarrollar el Agente de Visión (Wrapper de Ollama). [35b9fa6]
 - [x] Task: Desarrollar el Agente Guardián (Lógica de validación). [ba2a318]
 - [x] Task: Implementar flujo de feedback Visión -> Pizarra -> Guardián. [9ad8959]
-- [ ] Task: Conductor - User Manual Verification 'Fase 3: Integración Multimodal y Guardianes' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Fase 3: Integración Multimodal y Guardianes' (Protocol in workflow.md) [e7d33df]
