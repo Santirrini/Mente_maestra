@@ -13,7 +13,7 @@
 - [x] Task: Conductor - User Manual Verification 'Fase 2: Orquestador y API' (Protocol in workflow.md) [d3315c0]
 
 ## Fase 3: Integración Multimodal y Guardianes
-- [ ] Task: Desarrollar el Agente de Visión (Wrapper de Ollama).
+- [x] Task: Desarrollar el Agente de Visión (Wrapper de Ollama). [35b9fa6]
 - [ ] Task: Desarrollar el Agente Guardián (Lógica de validación).
 - [ ] Task: Implementar flujo de feedback Visión -> Pizarra -> Guardián.
 - [ ] Task: Conductor - User Manual Verification 'Fase 3: Integración Multimodal y Guardianes' (Protocol in workflow.md)
